@@ -1,0 +1,123 @@
+---
+title: "ECON216 Spring 2026 Group Project"
+author: "Calais Michaelsson, Catherina Iltchev, Juliene Jones"
+date: "2026-03-22"
+output:
+  pdf_document: default
+  html_document: default
+---
+```{r}
+
+```
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(tidycensus)
+library(dplyr)
+library(stringr)
+library(gtrendsR)
+library(haven)
+library(knitr)
+library(kableExtra)
+library(tibble)
+#census_api_key("14bd2fb7910d5d6d1719f85cf1bc8a8923de48b6", install = TRUE)
+pew_data <- read_sav('/ECON216-GroupProject/W56_Oct19/W56_Oct19/ATP W56.sav')
+```
+```{r}
+year_use <- 2024
+
+marital <- get_acs(
+  geography = "county",
+  table = "S1201",
+  year = year_use,
+  survey = "acs5"
+)
+
+households <- get_acs(
+  geography = "county",
+  table = "B11001",
+  year = year_use,
+  survey = "acs5"
+)
+
+living_arrangements <- get_acs(
+  geography = "county",
+  table = "B09021",
+  year = year_use,
+  survey = "acs5"
+)
+
+families <- get_acs(
+  geography = "county",
+  table = "S1101",
+  year = year_use,
+  survey = "acs5"
+)
+```
+```{r}
+#ACS Dataset
+lapply(list(marital, households, living_arrangements, families), glimpse)
+```
+
+
+
+
+To access the ACS dataset, I had to create a census API key (14bd2fb7910d5d6d1719f85cf1bc8a8923de48b6). This was fairly easy and I did not have any issues getting my key to work. For this dataset, the unit of observation is county-year and depending on which variables I am looking at, there are between 90216 and 618624 observations. This 5-year ACS goes from 2020 to 2024 and covers most counties in the US.
+```{r}
+#Google Trends Dataset
+apps <- c("Tinder", "Bumble", "Hinge", "OkCupid", "Match")
+
+if (file.exists("gt_region.rds")) {
+  gt_region <- readRDS("gt_region.rds")
+} else {
+  gt_region <- gtrendsR::gtrends(
+    keyword = apps,
+    geo = "US",
+    time = "2020-01-01 2025-01-01"
+  )
+  saveRDS(gt_region, "gt_region.rds")
+}
+
+region_data <- gt_region$interest_by_region
+glimpse(region_data)
+```
+To access the Google Trends data, I had to download the gtrendsR package which allowed me to pull trends data into R. For this dataset, the unit of observation is state-year and there are 255 observations (51 observations per keyword). The dataset goes from 2020-01-01 to 2025-01-01 and covers every US state and D.C.
+```{r}
+#Pew Dataset about online dating (American Trends Panel Wave 56)
+glimpse(pew_data)
+```
+To access the Pew Research Center dataset, I had to create an account and download it as a .sav file. I then downloaded the haven package and used it to load the file into R. For this dataset, the unit of observation is an individual survey respondent and there are 4860 observations. The dataset goes from 2019-10-16 to 2019-10-28 and represents respondents from the entire US (according to the Pew Research Center).
+
+```{r}
+table_data <- tibble(
+  `Variable Name` = c("S1201_C01_001 (Total population 15+)", "S1201_C01_002 (Never Married)", "location", "hits", "ONLINEDATE2", "DATE10YR"),
+  `Source Dataset` = c("ACS 2020-2024", "ACS 2020-2024", "Google Trends 2020-2025", "Google Trends 2020-2025", "Pew 2019-10-XX", "Pew 2019-10-XX"),
+  `Type` = c("Numeric", "Numeric", "Categorical", "Numeric", "Categorical", "Categorical"),
+  `Role in Analysis` = c(
+    "Grouping variable used to convert other ACS variables into percentages",
+    "Outcome variable used to measure social connection",
+    "Group variable used to group dating app usage by state",
+    "Independent variable that measures dating app usage",
+    "Categorical variable that measures dating app usage",
+    "Categorical variable used to measure views on difficulty of dating"
+  )
+)
+```
+```{r}
+kable(
+  table_data,
+  format = "latex",
+  booktabs = TRUE,
+  linesep = "",
+  longtable = TRUE
+) %>%
+  kable_styling(
+    latex_options = c("hold_position", "repeat_header"),
+    font_size = 9
+  ) %>%
+  column_spec(1, width = "3.5cm") %>%   # Variable Name (shrink)
+  column_spec(2, width = "3.5cm") %>%   # Source Dataset
+  column_spec(3, width = "2.2cm") %>%   # Type (small)
+  column_spec(4, width = "8.5cm")       # Role (expand)
+```
