@@ -22,7 +22,7 @@ library(knitr)
 library(kableExtra)
 library(tibble)
 #census_api_key("14bd2fb7910d5d6d1719f85cf1bc8a8923de48b6", install = TRUE)
-pew_data <- read_sav('/ECON216-GroupProject/W56_Oct19/W56_Oct19/ATP W56.sav')
+pew_data <- read_sav("W56_Oct19/W56_Oct19/ATP W56.sav")
 ```
 ```{r}
 year_use <- 2024
@@ -83,6 +83,9 @@ region_data <- gt_region$interest_by_region
 glimpse(region_data)
 ```
 To access the Google Trends data, I had to download the gtrendsR package which allowed me to pull trends data into R. For this dataset, the unit of observation is state-year and there are 255 observations (51 observations per keyword). The dataset goes from 2020-01-01 to 2025-01-01 and covers every US state and D.C.
+```{r}
+
+```
 ```{r}
 #Pew Dataset about online dating (American Trends Panel Wave 56)
 glimpse(pew_data)
