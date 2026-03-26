@@ -1,0 +1,31 @@
+```yaml
+title: "ECON216 Spring 2026 Group Project"
+author: "Calais Michaelsson, Catherina Iltchev, Juliene Jones"
+date: "03-26-2026"
+output:
+  pdf_document: default
+  html_document: default
+```
+```{r}
+
+```
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(tidycensus)
+library(dplyr)
+library(stringr)
+library(gtrendsR)
+library(haven)
+library(knitr)
+library(kableExtra)
+library(tibble)
+#census_api_key("14bd2fb7910d5d6d1719f85cf1bc8a8923de48b6", install = TRUE)
+pew_data <- read_sav("W56_Oct19/W56_Oct19/ATP W56.sav")
+
+heycupid_data <- read_csv("New_Datasets/okcupid_profiles.csv")
+```
+```{r}
+glimpse(heycupid_data)
+```
