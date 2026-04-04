@@ -1930,14 +1930,19 @@ See attached images
 
 ## Expert Sources
 1. Castro, Á., & Barrada, J. R. (2020). Dating Apps and Their Sociodemographic and Psychosocial Correlates: A Systematic Review. International Journal of Environmental Research and Public Health, 17(18), 6500. https://doi.org/10.3390/ijerph17186500 
+    Dating apps have become popularized in the last decade, targeting a younger audience (Castro and Barrada, 2020). This results in a greater number of young users than older. The figure further demonstrates this with a right skewed distribution of age. 
 
 2. Dating App Revenue and Usage Statistics (2026). (n.d.). Business of Apps. Retrieved April 2, 2026, from https://www.businessofapps.com/data/dating-app-market/
+    Dating apps have experienced rapid growth in both global revenue and user adoption over time (Business of Apps, 2026). This supports the inclusion of time trends in app usage as a key variable, reflecting increasing prevalence and market expansion.
 
 3. Dating Statistics And Facts. (2025, July 22). Forbes Health. https://www.forbes.com/health/dating/dating-statistics/
+    Recent statistics show that online dating usage is widespread across demographic groups, with particularly high engagement among younger adults (Forbes Health, 2025). This justifies examining variation across age and social outcomes, as usage intensity differs across populations.
 
 4. Vogels, E. A., & McClain, C. (2023, February 2). Key findings about online dating in the U.S. Pew Research Center. https://www.pewresearch.org/short-reads/2023/02/02/key-findings-about-online-dating-in-the-u-s/
+   Online dating has become a common way for Americans to meet partners, with a significant share of adults reporting past or current use (Vogels and McClain, 2023). This reinforces the relevance of dating app usage as a meaningful explanatory variable for changes in social connection.
 
 5. lResearch shows dating apps, sites are leading to more diverse couples. (n.d.). UNM UCAM Newsroom. Retrieved April 2, 2026, from https://news.unm.edu/news/research-shows-dating-apps-sites-are-leading-to-more-diverse-couplesimk
+   Research indicates that dating apps facilitate connections across diverse social and demographic groups, increasing relationship diversity (UNM UCAM Newsroom, n.d.). This suggests that dating app usage may influence broader social structures, including patterns of relationships and household formation.
 
 # Part E
 
